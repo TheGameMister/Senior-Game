@@ -1,2 +1,2 @@
 # Senior-Game
-This is the repositor for our game
+Repository for the Test Area of the Senior Project game
