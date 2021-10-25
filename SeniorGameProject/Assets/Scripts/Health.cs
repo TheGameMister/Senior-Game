@@ -6,50 +6,62 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public int health;
-    public int numOfHearts;
+   public playerHealth = 100;
 
-    public Image[] hearts;
+   public playerMaxHealth;
 
+   enemyDamage = 25;
 
-    public Health()
+    private GameObject redHeart;
+    private GameObject yellowHeart;
+    private GameObject blueHeart;
+    private gameObject slimeEnemy;
+
+    void Start()
     {
-        numOfHearts = 3;
+        playerHealth = playerMaxHealth;
+        redHeart = GameObject.Find("RedHeart");
+        yellowHeart = GameObject.Find("YellowHeart");
+        blueHeart = GameObject.Find("BlueHeart");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //how many hearts the player will have
-        for (int i = 0; i < hearts.Length; i++)
+        HealthSystem();
+    }
+
+    public void HealthSystem()
+    {
+        if()
         {
-            if (i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
+            playerHealth -= enemyDamage;
         }
 
-        if (numOfHearts <= 0)
+        if(playerHealth >= 76)
         {
+            blueHeart.enabled = true;
+            yellowHeart.enabled = false;
+            redHeart.enabled = false;
+        }
+        else if(playerHealth >= 26)
+        {
+            blueHeart.enabled = false;
+            yellowHeart.enabled = true;
+            redHeart.enabled = false;
+        }
+        else if(playerHealth >=  1)
+        {
+            blueHeart.enabled = false;
+            yellowHeart.enabled = false;
+            redHeart.enabled = true;
+        }
+        else if(playerHealth <= 0)
+        {
+            blueHeart.enabled = false;
+            yellowHeart.enabled = false;
+            redHeart.enabled = false;
             Application.LoadLevel(0);
         }
 
-        //for testing if the hearts will go down
-        if (Input.GetKeyDown(KeyCode.Delete))
-        {
-            numOfHearts -= 1;
-        }
-    }
-
-    private void OnCollision(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            numOfHearts -= 1;
-        }
     }
 }

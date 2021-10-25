@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
-    public float Speed = 12f;
-    public float gravity = -9.81f;
+    public float speed = 12f;
+    public float gravity = -39.81f;
     public float jumpHeight = 3f;
 
     public Transform groundCheck;
@@ -25,30 +25,31 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckMovement();
         CheckJump();
-        Gravity();
-
-        x = Input.GetAxis("Horizontal");
-        z = Input.GetAxis("Vertical");
+        CheckForGround();
     }
 
     public void CheckMovement()
     {
-       if(x != 0 || z != 0)
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        x = Input.GetAxis("Horizontal");
+        z = Input.GetAxis("Vertical");
+
+        if (x != 0 || z != 0)
         {
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
             Vector3 move = transform.right * x + transform.forward * z;
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                Speed = 15f;
+                speed = 25f;
             }
             else
             {
-                Speed = 10f;
+                speed = 10f;
             }
 
-            controller.Move(move * Speed * Time.deltaTime);
+            controller.Move(move * speed * Time.deltaTime);
         }
     }
 
@@ -61,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Gravity()
+    public void CheckForGround()
     {
         if (isGrounded && velocity.y < 0)
         {
