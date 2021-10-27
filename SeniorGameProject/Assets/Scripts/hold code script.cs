@@ -4,50 +4,61 @@ using UnityEngine;
 
 public class holdcodescript : MonoBehaviour
 {
-    public int health;
-    public int numOfHearts;
+    // public playerHealth = 100;
 
-    public Image[] hearts;
+    // public playerMaxHealth;
 
+    // enemyDamage  = 25;
 
-    public Health()
-    {
-        numOfHearts = 3;
-    }
+   // private GameObject redHeart;
+   // private GameObject yellowHeart;
+   // private GameObject blueHeart;
+   // private gameObject slimeEnemy;
 
-    // Update is called once per frame
-    void Update()
-    {
-        //how many hearts the player will have
-        for (int i = 0; i < hearts.Length; i++)
-        {
-            if (i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
-        }
+   // void Start()
+   // {
+       // playerHealth = playerMaxHealth;
+        //redHeart = GameObject.Find("RedHeart");
+       // yellowHeart = GameObject.Find("YellowHeart");
+        //blueHeart = GameObject.Find("BlueHeart");
+    //}
 
-        if (numOfHearts <= 0)
-        {
-            Application.LoadLevel(0);
-        }
+    //void Update()
+    //{
+       // HealthSystem();
+   // }
 
-        //for testing if the hearts will go down
-        if (Input.GetKeyDown(KeyCode.Delete))
-        {
-            numOfHearts -= 1;
-        }
-    }
+   // public void HealthSystem()
+   // {
+        //if (isTouching())
+        //{
+           // playerHealth -= enemyDamage;
+        //}
 
-    private void OnCollision(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            numOfHearts -= 1;
-        }
-    }
+       // if (playerHealth >= 76)
+       // {
+           // blueHeart.enabled = true;
+            //yellowHeart.enabled = false;
+           // redHeart.enabled = false;
+       // }
+       // else if (playerHealth >= 26)
+       // {
+          //  blueHeart.enabled = false;
+           // yellowHeart.enabled = true;
+         //   redHeart.enabled = false;
+       // }
+        //else if (playerHealth >= 1)
+       // {
+       //     blueHeart.enabled = false;
+           // yellowHeart.enabled = false;
+        //    redHeart.enabled = true;
+      //  }
+       // else if (playerHealth <= 0)
+      //  {
+        //    blueHeart.enabled = false;
+        //    yellowHeart.enabled = false;
+       //     redHeart.enabled = false;
+          //  Application.LoadLevel(0);
+      //  }
+   // }
 }
